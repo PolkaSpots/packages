@@ -6,11 +6,14 @@ SERVICE_USE_PID=1
 START=50
 
 start() {
-	user_exists http || user_add http
-	[ -d /var/log/lighttpd ] || {
-		mkdir -m 0775 -p /var/log/lighttpd
-		chgrp www-data /var/log/lighttpd
-	}
+	mkdir -m 0755 -p /var/log/lighttpd
+	touch /etc/lighttpd.user
+	if [ -e "/etc/serial" ]
+		then
+		echo "polkaspots:`cat /etc/serial`" > /etc/lighttpd/lighttpd.user
+	else
+		echo "polkaspots:stinky" > /etc/lighttpd/lighttpd.user
+	fi
 	service_start /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
 }
 
