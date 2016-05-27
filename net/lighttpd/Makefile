@@ -122,6 +122,8 @@ define Package/lighttpd/install
 	done
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lighttpd $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
+	$(INSTALL_DATA) ./files/lighttpd.hotplug $(1)/etc/hotplug.d/iface/40-lighttpd
 endef
 
 define BuildPlugin
