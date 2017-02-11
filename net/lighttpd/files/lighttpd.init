@@ -10,9 +10,9 @@ start() {
 	touch /etc/lighttpd.user
 	if [ -e "/etc/serial" ]
 		then
-		echo "polkaspots:`cat /etc/serial`" > /etc/lighttpd/lighttpd.user
+		echo "cucumber:`cat /etc/serial`" > /etc/lighttpd/lighttpd.user
 	else
-		echo "polkaspots:stinky" > /etc/lighttpd/lighttpd.user
+		echo "cucumber:stinky" > /etc/lighttpd/lighttpd.user
 	fi
 	service_start /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf
 }
